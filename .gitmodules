@@ -1,3 +1,0 @@
-[submodule "tinkerpop"]
-	path = tinkerpop
-	url = https://github.com/apache/tinkerpop.git
