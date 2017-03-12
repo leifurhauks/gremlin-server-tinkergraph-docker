@@ -1,5 +1,5 @@
-FROM maven:3-jdk-8
-MAINTAINER ZEROFAIL
+FROM openjdk:8-jdk
+MAINTAINER Leifur Halldor Asgeirsson
 EXPOSE 8182
 
 WORKDIR /build
@@ -9,11 +9,8 @@ RUN apt-get install -y python-setuptools
 
 COPY tinkerpop /build/tinkerpop/
 
-WORKDIR tinkerpop
-RUN mvn clean package -DskipTests
-
-RUN unzip -d /opt /build/tinkerpop/gremlin-server/target/apache-gremlin-server-3.2.1-SNAPSHOT-distribution.zip
-RUN ln -s /opt/apache-gremlin-server-3.2.1-SNAPSHOT /opt/gremlin-server
+RUN unzip -d /opt /build/tinkerpop/apache-tinkerpop-gremlin-server-3.2.4-bin.zip
+RUN ln -s /opt/apache-tinkerpop-gremlin-server-3.2.4 /opt/gremlin-server
 
 WORKDIR /opt/gremlin-server
 COPY gremlin-server.yaml conf/
